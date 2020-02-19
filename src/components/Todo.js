@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { useDispatch } from 'react-redux';
+
+import { toggleTodo } from '../redux/actions';
 
 const TodoContainer = styled.div`
   margin: 3px;
@@ -10,9 +13,14 @@ const TodoContainer = styled.div`
 `;
 
 function Todo({ text, completed, id }) {
+  const dispatch = useDispatch();
   return (
     <TodoContainer completed={completed}>
-      <button>&#x2714;</button>
+      <button
+        onClick={() => dispatch(toggleTodo(id))}
+      >
+        &#x2714;
+      </button>
       {text}
     </TodoContainer>
   );

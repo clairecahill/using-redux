@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { useDispatch } from 'react-redux';
+
+import { addTodo } from '../redux/actions';
 
 const AddTodoForm = styled.form`
   margin: 3px;
@@ -10,10 +13,12 @@ const AddTodoForm = styled.form`
 
 function AddTodo() {
   const [ text, setText ] = useState("");
+  const dispatch = useDispatch();
   return (
     <AddTodoForm onSubmit={(e) => {
       e.preventDefault();
       console.log("Added new todo:", text);
+      dispatch(addTodo(text));
       setText("");
     }}>
       <button>+</button>
